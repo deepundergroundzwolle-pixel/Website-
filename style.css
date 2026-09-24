@@ -151,6 +151,7 @@ body.nav-open{overflow:hidden;touch-action:none}
     color:var(--text);font:500 12px/1 'DM Sans',Arial,sans-serif;letter-spacing:1.2px;
     text-transform:uppercase;cursor:pointer;z-index:70;
   }
+  body.nav-open .nav-toggle{visibility:hidden;pointer-events:none}
   .nav-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .nav-toggle-bars{display:flex;flex-direction:column;gap:4px;width:16px}
   .nav-toggle-bars i{display:block;height:1px;background:currentColor;border-radius:1px}
@@ -159,39 +160,38 @@ body.nav-open{overflow:hidden;touch-action:none}
     opacity:0;pointer-events:none;transition:opacity .3s cubic-bezier(0.22,1,0.36,1);
   }
   .nav-backdrop.is-open{opacity:1;pointer-events:auto}
-  .site-nav{
+  /* Higher specificity than legacy .site-header nav rules */
+  .site-header .site-nav{
     position:fixed;inset:0;z-index:65;display:flex;flex-direction:column;
     justify-content:center;align-items:center;gap:0;padding:72px var(--gutter) 48px;
+    width:100%;max-width:none;min-width:0;margin:0;overflow-x:hidden;overflow-y:auto;
     background:var(--bg);transform:translateX(100%);visibility:hidden;
     transition:transform .35s cubic-bezier(0.22,1,0.36,1),visibility .35s;
-    overflow-y:auto;-webkit-overflow-scrolling:touch;
-    counter-reset:nav-item;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;counter-reset:nav-item;
   }
-  .site-nav.is-open{transform:translateX(0);visibility:visible}
-  .site-nav a{
+  .site-header .site-nav.is-open{transform:translateX(0);visibility:visible}
+  .site-header .site-nav a{
     font-family:'Barlow Condensed',Impact,sans-serif;font-size:clamp(2rem,7vw,2.75rem);
-    font-weight:600;letter-spacing:.02em;text-transform:uppercase;
-    min-height:56px;padding:18px 0;border-bottom:1px solid var(--line);
-    width:min(100%,18rem);display:flex;align-items:center;gap:.65em;
+    font-weight:600;letter-spacing:.02em;text-transform:uppercase;white-space:normal;
+    flex:0 0 auto;min-height:56px;padding:18px 0;border-bottom:1px solid var(--line);
+    width:min(100%,18rem);max-width:18rem;display:flex;align-items:center;gap:.65em;
     justify-content:flex-start;box-sizing:border-box;
   }
-  .site-nav a:before{
+  .site-header .site-nav a:before{
     counter-increment:nav-item;
     content:counter(nav-item,decimal-leading-zero);
     font-size:.42em;font-weight:600;letter-spacing:.08em;
     color:var(--muted);flex:0 0 auto;line-height:1;
   }
-  .site-nav a:after{display:none}
-  .site-nav a[aria-current="location"]{color:var(--accent)}
-  .site-nav a[aria-current="location"]:before{color:var(--accent)}
+  .site-header .site-nav a:after{display:none;content:none}
+  .site-header .site-nav a[aria-current="location"]{color:var(--accent)}
+  .site-header .site-nav a[aria-current="location"]:before{color:var(--accent)}
   .nav-close{
     display:grid;place-items:center;position:absolute;top:18px;right:var(--gutter);
     width:44px;height:44px;border:1px solid var(--line);border-radius:4px;
-    background:transparent;color:var(--text);font-size:28px;line-height:1;cursor:pointer;
+    background:transparent;color:var(--text);font-size:28px;line-height:1;cursor:pointer;z-index:66;
   }
   .nav-close:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-  /* Kill legacy horizontal scroll nav on narrow viewports */
-  .site-header nav{overflow:visible;width:auto;max-width:none;padding:0;scrollbar-width:none}
 }
 
 /* Progress stays above overlay dim but under open sheet links are fine at z 60 */
