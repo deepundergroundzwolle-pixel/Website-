@@ -322,3 +322,7 @@ body.nav-open{overflow:hidden;touch-action:none}
   .release-art:hover{transform:none}
   .site-nav,.nav-backdrop{transition:none!important}
 }
+
+.event-tickets{grid-column:2;display:inline-flex;align-items:center;gap:8px;width:max-content;margin-top:2px;padding:0;border:0;background:none;font:inherit;font-size:.875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+.event-tickets:hover,.event-tickets:focus-visible{color:#fff;outline:none}
+.event-tickets:focus-visible{box-shadow:0 0 0 2px var(--accent);border-radius:2px}
